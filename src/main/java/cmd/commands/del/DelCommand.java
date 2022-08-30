@@ -8,6 +8,7 @@ import picocli.CommandLine.Parameters;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Scanner;
 
 /**
  * "Delete File" command class
@@ -34,7 +35,16 @@ public class DelCommand implements Runnable {
         String absolutePath = file.getAbsolutePath();
         boolean delete = false;
         try {
-            delete = Files.deleteIfExists(file.toPath());
+            if(file.exists()){
+                Scanner myObj = new Scanner(System.in);
+                System.out.println("Do you want to Delete this file? " + file.getName() + " Y/N username");
+                String userInput = myObj.nextLine();
+                if(userInput.replaceAll("\\s","").equals("Y") || userInput.replaceAll("\\s","").equals("y")){
+                    delete = Files.deleteIfExists(file.toPath());
+                } else {
+                    // TODO: inform user
+                }
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
