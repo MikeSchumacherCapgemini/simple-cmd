@@ -16,7 +16,7 @@ import picocli.CommandLine.Command;
  * @see <a href="https://picocli.info/">picocli Documentation</a>
  */
 @Command(name = "cmd", description = "base command", mixinStandardHelpOptions = true, subcommands = { DirCommand.class,
-DelCommand.class, CopyCommand.class, CDCommand.class, MkdirCommand.class, MoveCommand.class })
+DelCommand.class, CopyCommand.class, CDCommand.class, MkdirCommand.class, MoveCommand.class, FindCommand.class })
 public class BaseCommand implements Runnable {
   public BaseCommand() {
 
