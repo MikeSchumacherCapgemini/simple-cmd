@@ -9,9 +9,9 @@ import picocli.CommandLine.Parameters;
 import java.io.*;
 
 /**
- * "Change Directory" command class
+ * "File" command class
  * <p/>
- * Executing the command changes the currently set directory
+ * Executing displays the content of the provided file.
  */
 @Command(
         name = "file",
