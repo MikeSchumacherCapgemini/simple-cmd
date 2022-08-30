@@ -49,7 +49,8 @@ public class FindCommand implements Runnable {
     }
 
     private void printLine(File f) {
-        if (getExtensionByStringHandling(f.getName()).equals(filterExtension)) {
+        Optional<String> fileEnding = getExtensionByStringHandling(f.getName());
+        if (fileEnding.isPresent() && fileEnding.get().equals(filterExtension)) {
             if (!f.isDirectory()) {
                 LOG.info("{}\n", f.getAbsolutePath());
             }
