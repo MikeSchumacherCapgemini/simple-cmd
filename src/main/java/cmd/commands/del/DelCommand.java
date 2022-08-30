@@ -37,12 +37,12 @@ public class DelCommand implements Runnable {
         try {
             if(file.exists()){
                 Scanner myObj = new Scanner(System.in);
-                System.out.println("Do you want to Delete this file? " + file.getName() + " Y/N username");
+                System.out.println("Do you want to Delete this file? " + file.getName() + " Y/N");
                 String userInput = myObj.nextLine();
                 if(userInput.replaceAll("\\s","").equals("Y") || userInput.replaceAll("\\s","").equals("y")){
                     delete = Files.deleteIfExists(file.toPath());
                 } else {
-                    // TODO: inform user
+                    LOG.info("Recorded input was: {} and the file was not deleted", userInput);
                 }
             }
         } catch (IOException e) {

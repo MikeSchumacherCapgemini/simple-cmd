@@ -43,13 +43,9 @@ public class FindCommand implements Runnable {
         if (directory.isDirectory()) {
             File[] files = directory.listFiles();
             if (null != files) {
-                Stream.of(files).sorted(getFileListComparator()).forEach(this::printLine);
+                Stream.of(files).forEach(this::printLine);
             }
         }
-    }
-
-    private Comparator<File> getFileListComparator() {
-        return Comparator.comparing(File::getName, Comparator.naturalOrder());
     }
 
     private void printLine(File f) {
