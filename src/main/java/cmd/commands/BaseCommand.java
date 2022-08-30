@@ -3,6 +3,10 @@ package cmd.commands;
 import cmd.commands.copy.CopyCommand;
 import cmd.commands.del.DelCommand;
 import cmd.commands.dir.DirCommand;
+import cmd.commands.cd.CDCommand;
+import cmd.commands.move.MoveCommand;
+import cmd.commands.find.FindCommand;
+import cmd.commands.mkdir.MkdirCommand;
 import picocli.CommandLine.Command;
 
 /**
