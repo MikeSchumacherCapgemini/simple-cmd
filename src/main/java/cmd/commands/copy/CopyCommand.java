@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Scanner;
 
 /**
  * "Copy File" command class
@@ -33,7 +34,20 @@ public class CopyCommand implements Runnable {
     @Override
     public void run() {
         try {
-            Files.copy(source.toPath(), target.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            if(source.exists()) {
+                if(!target.exists()) {
+                    Files.copy(source.toPath(), target.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                }else{
+                    Scanner myObj = new Scanner(System.in);
+                    System.out.println("Do you want to overwrite this file? " + target.getName() + " Y/N");
+                    String userInput = myObj.nextLine();
+                    if(userInput.replaceAll("\\s","").equals("Y") || userInput.replaceAll("\\s","").equals("y")){
+                        Files.copy(source.toPath(), target.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    }
+                }
+            }else{
+                System.out.println("The file doesn't exist.");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
