@@ -36,6 +36,6 @@ public class CDCommand implements Runnable {
         } else {
             throw new RuntimeException("Provided path is not a directory");
         }
-        LOG.info("Current path was {} and now set to {}\n", file.getAbsolutePath(), oldPath);
+        LOG.info("Current path was {} and now set to {}\n", oldPath, file.getAbsolutePath());
     }
 }
