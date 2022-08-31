@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import cmd.SimpleCmd;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
+import picocli.CommandLine.Parameters;
 
 /**
  * "List Directory" command class
@@ -30,6 +31,9 @@ public class DirCommand implements Runnable {
   @Option(names = { "-s", "--sort" }, description = "possible values are {asc, desc} for ascending / descending order")
   private String sortOrder;
 
+  @Parameters(index = "0", defaultValue = "", description = "")
+  private File externalDirectory;
+
   public DirCommand() {
 
     /* intentionally empty */
@@ -38,7 +42,11 @@ public class DirCommand implements Runnable {
   @Override
   public void run() {
 
-    listFilesInDirectory(SimpleCmd.getCurrentLocation());
+    if (!this.externalDirectory.exists()) {
+      listFilesInDirectory(SimpleCmd.getCurrentLocation());
+    } else {
+      listFilesInDirectory(this.externalDirectory);
+    }
   }
 
   private void listFilesInDirectory(File directory) {
