@@ -1,6 +1,7 @@
 package cmd.commands.dir;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.stream.Stream;
 
@@ -78,7 +79,7 @@ public class DirCommand implements Runnable {
   private Comparator<String> getSortOrderAwareFileNameComparator(final String sortOrder) {
 
     if ("desc".equals(sortOrder)) {
-      return (fileName2, fileName1) -> 0;
+      return Collections.reverseOrder(String::compareToIgnoreCase);
     } else if ("asc".equals(sortOrder)) {
       return String::compareToIgnoreCase;
     } else {
