@@ -3,10 +3,8 @@ package cmd.commands.mkdir;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
-import sun.rmi.runtime.Log;
 
 import java.io.File;
-import java.io.IOException;
 
 @CommandLine.Command(name = "mkdir", description = "Displays files and directories of current working directory", mixinStandardHelpOptions = true)
 public class MkDirCommand implements Runnable {

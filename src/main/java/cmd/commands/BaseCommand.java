@@ -1,14 +1,15 @@
 package cmd.commands;
 
+import cmd.commands.cd.CDCommand;
 import cmd.commands.copy.CopyCommand;
 import cmd.commands.date.DateCommand;
 import cmd.commands.del.DelCommand;
 import cmd.commands.dir.DirCommand;
-import cmd.commands.cd.CDCommand;
+import cmd.commands.file.FileCommand;
+import cmd.commands.find.FindCommand;
+import cmd.commands.hash.HashCommand;
 import cmd.commands.mkdir.MkDirCommand;
 import cmd.commands.move.MoveCommand;
-import cmd.commands.find.FindCommand;
-import cmd.commands.file.FileCommand;
 import cmd.commands.rename.RenameCommand;
 import picocli.CommandLine.Command;
 
@@ -22,18 +23,18 @@ import picocli.CommandLine.Command;
  *
  * @see <a href="https://picocli.info/">picocli Documentation</a>
  */
-@Command(name = "cmd", description = "base command", mixinStandardHelpOptions = true, subcommands = { DirCommand.class,
-DelCommand.class, CopyCommand.class, CDCommand.class, MoveCommand.class, FindCommand.class, FileCommand.class, RenameCommand.class, MkDirCommand.class, DateCommand.class})
+@Command(name = "cmd", description = "base command", mixinStandardHelpOptions = true, subcommands = {DirCommand.class,
+        DelCommand.class, CopyCommand.class, CDCommand.class, MoveCommand.class, FindCommand.class, FileCommand.class, RenameCommand.class, MkDirCommand.class, DateCommand.class, HashCommand.class})
 public class BaseCommand implements Runnable {
-  public BaseCommand() {
+    public BaseCommand() {
 
-    /* intentionally empty */
-  }
+        /* intentionally empty */
+    }
 
-  @Override
-  public void run() {
+    @Override
+    public void run() {
 
-    /* intentionally empty */
-  }
+        /* intentionally empty */
+    }
 
 }
