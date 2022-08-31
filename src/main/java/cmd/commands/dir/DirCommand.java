@@ -31,7 +31,10 @@ public class DirCommand implements Runnable {
   @Option(names = { "-s", "--sort" }, description = "possible values are {asc, desc} for ascending / descending order")
   private String sortOrder;
 
-  @Parameters(index = "0", defaultValue = "", description = "")
+  @Option(names = { "-c", "--check" }, description = "check if the given path is a file or directory")
+  private boolean fileCheck;
+
+  @Parameters(index = "0", defaultValue = "", description = "path of the directory to show, leave blank for current directory")
   private File externalDirectory;
 
   public DirCommand() {
@@ -43,8 +46,21 @@ public class DirCommand implements Runnable {
   public void run() {
 
     if (!this.externalDirectory.exists()) {
+      if (this.fileCheck) {
+        LOG.info("This is a directory!\n");
+        return;
+      }
       listFilesInDirectory(SimpleCmd.getCurrentLocation());
     } else {
+      if (this.fileCheck) {
+        if (this.externalDirectory.isFile()) {
+          LOG.info("The given path represents a file\n");
+          return;
+        } else {
+          LOG.info("The given path represents a directory\n");
+          return;
+        }
+      }
       listFilesInDirectory(this.externalDirectory);
     }
   }
