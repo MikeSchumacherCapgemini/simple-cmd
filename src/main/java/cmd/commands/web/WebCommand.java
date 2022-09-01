@@ -13,10 +13,10 @@ public class WebCommand implements Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(cmd.commands.web.WebCommand.class);
 
-    @CommandLine.Option(names = { "-r", "--reach" }, description = "create file")
+    @CommandLine.Option(names = { "-r", "--reach" }, description = "Check if a given URL is reachable")
     private boolean shouldCheckIfReachable;
 
-    @CommandLine.Option(names = { "-o", "--open" }, description = "create dir")
+    @CommandLine.Option(names = { "-o", "--open" }, description = "Open default browser for a given URL")
     private boolean shouldOpenInTheBrowser;
 
     @CommandLine.Parameters(paramLabel = "<Url>",
