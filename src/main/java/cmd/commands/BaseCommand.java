@@ -11,6 +11,7 @@ import cmd.commands.hash.HashCommand;
 import cmd.commands.mkdir.MkDirCommand;
 import cmd.commands.move.MoveCommand;
 import cmd.commands.rename.RenameCommand;
+import cmd.commands.web.WebCommand;
 import picocli.CommandLine.Command;
 
 /**
@@ -24,7 +25,7 @@ import picocli.CommandLine.Command;
  * @see <a href="https://picocli.info/">picocli Documentation</a>
  */
 @Command(name = "cmd", description = "base command", mixinStandardHelpOptions = true, subcommands = {DirCommand.class,
-        DelCommand.class, CopyCommand.class, CDCommand.class, MoveCommand.class, FindCommand.class, FileCommand.class, RenameCommand.class, MkDirCommand.class, DateCommand.class, HashCommand.class})
+        DelCommand.class, CopyCommand.class, CDCommand.class, MoveCommand.class, FindCommand.class, FileCommand.class, RenameCommand.class, MkDirCommand.class, DateCommand.class, HashCommand.class, WebCommand.class})
 public class BaseCommand implements Runnable {
     public BaseCommand() {
 
