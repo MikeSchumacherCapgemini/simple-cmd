@@ -1,6 +1,8 @@
 package cmd.commands.dir;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.stream.Stream;
@@ -34,6 +36,9 @@ public class DirCommand implements Runnable {
 
   @Option(names = { "-c", "--check" }, description = "check if the given path is a file or directory")
   private boolean fileCheck;
+
+  @Option(names = { "-short" }, description = "gives the relative path to the given directory")
+  private boolean relativePath;
 
   @Parameters(index = "0", defaultValue = "", description = "path of the directory to show, leave blank for current directory")
   private File externalDirectory;
@@ -73,6 +78,8 @@ public class DirCommand implements Runnable {
       if (null != files) {
         Stream.of(files).sorted(getFileListComparator()).forEach(this::printLine);
       }
+    } else {
+      LOG.info("{}\n", directory.getAbsolutePath());
     }
   }
 
@@ -96,10 +103,25 @@ public class DirCommand implements Runnable {
 
     if (this.filesOnly) {
       if (!f.isDirectory()) {
-        LOG.info("{}\n", f.getAbsolutePath());
+        if (this.relativePath) {
+          LOG.info("{}\n", getRelativePath(SimpleCmd.getCurrentLocation().getAbsolutePath(), f.getAbsolutePath()));
+        } else {
+          LOG.info("{}\n", f.getAbsolutePath());
+        }
       }
     } else {
-      LOG.info("{}\n", f.getAbsolutePath());
+      if (this.relativePath) {
+        LOG.info("{}\n", getRelativePath(SimpleCmd.getCurrentLocation().getAbsolutePath(), f.getAbsolutePath()));
+      } else {
+        LOG.info("{}\n", f.getAbsolutePath());
+      }
     }
+  }
+
+  private Path getRelativePath(String path1, String path2) {
+
+    Path first = Paths.get(path1);
+    Path second = Paths.get(path2);
+    return first.relativize(second);
   }
 }
