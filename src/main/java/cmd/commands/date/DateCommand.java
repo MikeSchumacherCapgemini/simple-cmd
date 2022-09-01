@@ -11,7 +11,7 @@ import java.util.Date;
 
 @CommandLine.Command(
         name = "date",
-        description = "date command",
+        description = "date command, -d only date, -t displays only time, default both and you can set a format by providing a format string (separate through an under score, will be replaced through an blank by the system",
         mixinStandardHelpOptions = true,
         subcommands = {DirCommand.class, DelCommand.class, CopyCommand.class})
 public class DateCommand  implements  Runnable{
