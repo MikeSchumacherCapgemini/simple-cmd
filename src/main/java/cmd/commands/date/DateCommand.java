@@ -20,13 +20,17 @@ public class DateCommand  implements  Runnable{
     @CommandLine.Option(names = { "-t"}, description = "print only time")
     private boolean timeOnly;
 
+    @CommandLine.Parameters(index = "0", defaultValue = "yyyy-MM-dd 'at' HH:mm:ss z", description = "date Format, please separate through an underscore")
+    private String format;
+
     public DateCommand(){
         /* intentionally empty */
     }
 
     @Override
     public void run() {
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+        format = format.replaceAll("_", " ");
+        SimpleDateFormat formatter= new SimpleDateFormat(format);
         Date date = new Date(System.currentTimeMillis());
         String output = formatter.format(date);
         if(dateOnly){
